@@ -55,7 +55,8 @@ st.caption("Interactive EDA using Streamlit and D-Tale")
 st.sidebar.header("Upload Dataset")
 uploaded_file = st.sidebar.file_uploader(
     "Upload CSV or Excel file or Text file",
-    type=["csv", "xlsx", "xls", "txt"]
+    type=["csv", "xlsx", "xls", "txt"],
+    accept_multiple_files=True
 )
 
 @st.cache_data
@@ -308,4 +309,4 @@ if uploaded_file is not None:
     )
 
 else:
-    st.info("Please upload a CSV or Excel or Text dataset from the sidebar.")
+    st.info("Please upload CSV or Excel or Text dataset from the sidebar.")
