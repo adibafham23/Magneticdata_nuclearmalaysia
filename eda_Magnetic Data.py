@@ -63,6 +63,8 @@ uploaded_file = st.sidebar.file_uploader(
 def load_data(file):
     if file.name.endswith(".csv"):
         return pd.read_csv(file)
+    elif file.name.endswith(".txt"):
+        return pd.read_csv(file, sep='\t') # Change sep=',' if your txt is comma-separated
     return pd.read_excel(file)
 
 # =========================
