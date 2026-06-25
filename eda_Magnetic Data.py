@@ -70,15 +70,16 @@ def load_data(file):
 # =========================
 # Main App
 # =========================
-if uploaded_file is not None:
-    df = load_data(uploaded_file)
+if uploaded_files: # Check if the list is not empty
+    
+    # Load and combine all uploaded files into one DataFrame
+    dataframes = [load_data(file) for file in uploaded_files]
+    df = pd.concat(dataframes, ignore_index=True)
 
-    st.success("Dataset uploaded successfully.")
+    st.success(f"{len(uploaded_files)} dataset(s) uploaded and combined successfully.")
 
     st.subheader("Dataset Preview")
     st.dataframe(df.head(100), use_container_width=True)
-
-    st.subheader("Dataset Information")
 
     col1, col2, col3, col4 = st.columns(4)
     col1.metric("Rows", df.shape[0])
